@@ -28,9 +28,11 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an accessToken, refreshToken, and Facebook
 //   profile), and invoke a callback with a user object.
 passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    clientID: 'abc123',
+    clientSecret: 'ssh-secret',
+    callbackURL: "http://localhost:4000/auth/facebook/callback",
+    authorizationURL: "http://localhost:3000/dialog/authorize",
+    tokenURL: "http://localhost:3000/oauth/token"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -108,7 +110,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
+app.listen(4000);
 
 
 // Simple route middleware to ensure user is authenticated.
